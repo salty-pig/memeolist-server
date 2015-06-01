@@ -1,0 +1,8 @@
+{
+  "realm": "memeolist",
+  "realm-public-key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQChJnyF2slqqV3a/rspYyOrEDwXL2oQUCcA6kcnDRG5wKRlRLqiRPoIxLTxLWs2O1OAXvzNriwgDswiSiFS3+37LMPAuLF03qJXzHhLtS/qEq9nxSMJVDfS9NwkeAaXKp2QQswyRr2wBQ4nvUQXt7asjgAtO6MLO9SnJ8n2aoz8xwIDAQAB",
+  "auth-server-url": "https://auth-coffeeregister.rhcloud.com/auth",
+  "ssl-required": "external",
+  "resource": "memolist-web",
+  "public-client": true
+}
