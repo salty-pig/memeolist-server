@@ -10,7 +10,6 @@ import java.util.Optional;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.persistence.PersistenceContext;
 import org.jboss.aerogear.memolist.service.UserService;
 import org.jboss.aerogear.memolist.vo.RedHatUser;
 

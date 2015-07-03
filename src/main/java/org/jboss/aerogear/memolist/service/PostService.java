@@ -5,6 +5,7 @@
  */
 package org.jboss.aerogear.memolist.service;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.persistence.EntityManager;
@@ -28,4 +29,9 @@ public class PostService {
         return post;
     }
 
+    public List<Post> getMostRecent() {
+        return em.createQuery("from Post order by posted").setMaxResults(10).getResultList();
+    }
+            
+    
 }
