@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -26,6 +27,7 @@ public class Meme implements Serializable{
     private String bottomComment;
     
     @Id
+    @GeneratedValue
     private Long id;
 
     public Long getId() {

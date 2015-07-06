@@ -32,6 +32,10 @@ public class MemeService {
     public List<Meme> getMostRecent() {
         return em.createQuery("from Meme order by posted").setMaxResults(10).getResultList();
     }
+
+    public byte[] getImage(long memeId) {
+        return em.createQuery("from Meme where id = :id", Meme.class).setParameter("id", memeId).getSingleResult().getImage();
+    }
             
     
 }

@@ -8,6 +8,7 @@ package org.jboss.aerogear.memolist.vo;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
@@ -17,6 +18,7 @@ import javax.persistence.Id;
 @Entity
 public class RedHatUser implements Serializable{
     @Id
+    @GeneratedValue
     private Long id;
 
     private String username;

@@ -22,6 +22,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
@@ -60,7 +61,7 @@ public class MemeController {
 
         Map<String, List<InputPart>> dataMap = input.getFormDataMap();
 
-        List<InputPart> fileParts = dataMap.get("file");
+        List<InputPart> fileParts = dataMap.get("image");
         List<InputPart> topCommentParts = dataMap.get("topComment");
         List<InputPart> bottomCommentParts = dataMap.get("bottomComment");
         String topComment = "";
@@ -122,6 +123,14 @@ public class MemeController {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Meme> mostRecent() {
         return memeService.getMostRecent();
+    }
+
+    
+    @GET
+    @Path("memeimage/{memeId}")
+    @Produces("image/png")
+    public byte[] image(@PathParam("memeId") long memeId) {
+        return memeService.getImage(memeId);
     }
     
     // save uploaded file to a defined location on the server
