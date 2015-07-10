@@ -80,7 +80,7 @@ public class MemeController {
             try {
                 
                 InputStream is = part.getBody(InputStream.class, null);
-                topComment = IOUtils.toString(is);
+                topComment = IOUtils.toString(is).toUpperCase();
             } catch (IOException e) {
                 throw new WebApplicationException(e);
             }
@@ -90,7 +90,7 @@ public class MemeController {
             try {
                 
                 InputStream is = part.getBody(InputStream.class, null);
-                bottomComment = IOUtils.toString(is);
+                bottomComment = IOUtils.toString(is).toUpperCase();
             } catch (IOException e) {
                 throw new WebApplicationException(e);
             }
@@ -109,8 +109,8 @@ public class MemeController {
         }
         
         Meme post = new Meme();
-        post.setTopComment(topComment);
-        post.setBottomComment(bottomComment);
+        post.setTopComment(topComment.toUpperCase());
+        post.setBottomComment(bottomComment.toUpperCase());
         post.setPosted(new Date());
         post.setImage(image);
         post.setOwner(rhuBean.getRedHatUser());

@@ -12,6 +12,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import org.jboss.aerogear.memolist.service.UserService;
 import org.jboss.aerogear.memolist.vo.RedHatUser;
+import org.keycloak.KeycloakPrincipal;
 
 /**
  *
