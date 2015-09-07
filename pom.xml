@@ -47,10 +47,9 @@
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>1.1.0.Alpha1</version>
-<!--                <executions>
+                <executions>
                     <execution>
                         <id>add-datasource</id>
-                        <phase>package</phase>
                         <goals>
                             <goal>add-resource</goal>
                         </goals>
@@ -71,7 +70,7 @@
                             </resources>
                         </configuration>
                     </execution>
-                </executions>-->
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
