@@ -4,14 +4,11 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -31,7 +28,6 @@ import org.jboss.aerogear.memolist.security.RedHatUserBean;
 import org.jboss.aerogear.memolist.service.MemeService;
 import org.jboss.aerogear.memolist.util.ImageOverlay;
 import org.jboss.aerogear.memolist.vo.Meme;
-import org.jboss.aerogear.memolist.vo.Post;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
@@ -61,6 +57,8 @@ public class MemeController {
 
         Map<String, List<InputPart>> dataMap = input.getFormDataMap();
 
+        Logger.getAnonymousLogger().log(Level.ALL, rhuBean.getRedHatUser().getDisplayName());
+        
         List<InputPart> fileParts = dataMap.get("image");
         List<InputPart> topCommentParts = dataMap.get("topComment");
         List<InputPart> bottomCommentParts = dataMap.get("bottomComment");
@@ -98,11 +96,11 @@ public class MemeController {
         
         try {
             BufferedImage overlayImage = ImageOverlay.overlay(ImageIO.read(new ByteArrayInputStream(image)), topComment, bottomComment);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write( overlayImage, "png", baos );
-            baos.flush();
-            image = baos.toByteArray();
-            baos.close();
+            try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+                ImageIO.write( overlayImage, "png", baos );
+                baos.flush();
+                image = baos.toByteArray();
+            }
         } catch (IOException | InterruptedException ex) {
             Logger.getLogger(MemeController.class.getName()).log(Level.SEVERE, null, ex);
             throw new WebApplicationException(ex);

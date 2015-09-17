@@ -35,9 +35,12 @@ public class UserService {
     }
 
     @TransactionAttribute()
-    public RedHatUser createUser(String userName) {
+    public RedHatUser createUser(String userName, String displayName, String photoUrl, byte[] image) {
         RedHatUser user = new RedHatUser();
         user.setUsername(userName);
+        user.setDisplayName(displayName);
+        user.setPhotoUrl(photoUrl);
+        user.setImage(image);
         em.persist(user);
         em.flush();
         return lookup(userName).get();

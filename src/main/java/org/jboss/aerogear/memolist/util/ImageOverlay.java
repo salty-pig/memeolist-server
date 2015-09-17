@@ -22,10 +22,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 
 /**
  * Worker that knows how to overlay text onto an image.

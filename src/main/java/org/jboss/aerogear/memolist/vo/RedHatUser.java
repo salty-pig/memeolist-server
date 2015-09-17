@@ -7,9 +7,12 @@ package org.jboss.aerogear.memolist.vo;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
@@ -21,9 +24,16 @@ public class RedHatUser implements Serializable{
     @GeneratedValue
     private Long id;
 
+    @Column(unique = true)
     private String username;
     
     private String displayName;
+    
+
+    @Lob
+    private byte[] image;
+    
+    private String photoUrl;
     
     public Long getId() {
         return id;
@@ -49,17 +59,29 @@ public class RedHatUser implements Serializable{
         this.displayName = displayName;
     }
 
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.id);
-        hash = 41 * hash + Objects.hashCode(this.username);
-        hash = 41 * hash + Objects.hashCode(this.displayName);
+        int hash = 3;
+        hash = 19 * hash + Objects.hashCode(this.id);
+        hash = 19 * hash + Objects.hashCode(this.username);
+        hash = 19 * hash + Objects.hashCode(this.displayName);
+        hash = 19 * hash + Objects.hashCode(this.photoUrl);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
         if (obj == null) {
             return false;
         }
@@ -67,16 +89,30 @@ public class RedHatUser implements Serializable{
             return false;
         }
         final RedHatUser other = (RedHatUser) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
         if (!Objects.equals(this.username, other.username)) {
             return false;
         }
         if (!Objects.equals(this.displayName, other.displayName)) {
             return false;
         }
+        if (!Objects.equals(this.photoUrl, other.photoUrl)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         return true;
     }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    
+    
     
 }

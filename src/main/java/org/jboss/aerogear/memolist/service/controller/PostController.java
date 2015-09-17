@@ -1,36 +1,21 @@
 package org.jboss.aerogear.memolist.service.controller;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import javax.imageio.ImageIO;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
-import org.apache.commons.io.IOUtils;
 import org.jboss.aerogear.memolist.security.RedHatUserBean;
 import org.jboss.aerogear.memolist.service.MemeService;
-import org.jboss.aerogear.memolist.util.ImageOverlay;
 import org.jboss.aerogear.memolist.vo.Meme;
 import org.jboss.aerogear.memolist.vo.Post;
-import org.jboss.resteasy.plugins.providers.multipart.InputPart;
-import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 /**
  *
@@ -39,9 +24,6 @@ import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 @Stateless
 @Path("/api")
 public class PostController {
-
-    // currently we use system 'temp' directory to store files
-    private static final String SERVER_UPLOAD_LOCATION_FOLDER = System.getProperty("java.io.tmpdir") + File.separator;
 
     @Inject
     private RedHatUserBean rhuBean;

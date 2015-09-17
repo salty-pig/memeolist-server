@@ -2,7 +2,7 @@
   "realm": "memeolist",
   "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApZtCkhZ/dcT17lLFuQijnIeaFWJp0w4CtjJFEIxnsXv8iuoT4iIalKMIlbAcN8Z5oOmsNA1xGeVIttTlhHYxeMFspgxGxj+P5RD/We6M9dU6+SIRlcjuhAdeJ4qyj7M/a4N88LfFF7xA24pCDULT+GKpBcYRwFXty075K4hqJpbGkDPQdyhYP2JpwUnzK2yyzd5TJfQR3BigAMWWNVDNPaf94vS9X8GlB7L0wFCV5YkSj1nEZ2k3GHA/3Olj4VDyd6WaveINP3/fRana98tKxlvuLT+hRWOIBmgYO0/K8VWyWlpzwWSugfz+rjdA/QGO1uGSXwV8dqx8Kk7SlV2XaQIDAQAB",
   "bearer-only": true,
-  "auth-server-url": "http://auth.sagaoftherealms.net/auth",
+  "auth-server-url": "https://auth.sagaoftherealms.net/auth",
   "ssl-required": "external",
   "resource": "memolist-web"
 }

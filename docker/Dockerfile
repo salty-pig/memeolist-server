@@ -8,7 +8,9 @@ ENV postgres_module_dir=/opt/jboss/wildfly/modules/system/layers/base/postgresql
 RUN mkdir -p ${postgres_module_dir}
 ADD module.xml ${postgres_module_dir}
 WORKDIR ${postgres_module_dir}
-RUN curl -O http://central.maven.org/maven2/org/postgresql/postgresql/9.4-1201-jdbc41/postgresql-9.4-1201-jdbc41.jar
+#RUN curl -O http://central.maven.org/maven2/org/postgresql/postgresql/9.4-1201-jdbc41/postgresql-9.4-1201-jdbc41.jar
+
+COPY postgresql-9.4-1201-jdbc41.jar ./postgresql-9.4-1201-jdbc41.jar
 
 WORKDIR /opt/jboss
 
