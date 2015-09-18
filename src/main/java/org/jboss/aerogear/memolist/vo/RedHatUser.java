@@ -6,6 +6,7 @@
 package org.jboss.aerogear.memolist.vo;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,6 +30,10 @@ public class RedHatUser implements Serializable{
     
     private String displayName;
     
+    private String emailAddress;
+    
+    @Lob
+    private String bio;
 
     @Lob
     private byte[] image;
@@ -69,11 +74,14 @@ public class RedHatUser implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 19 * hash + Objects.hashCode(this.id);
-        hash = 19 * hash + Objects.hashCode(this.username);
-        hash = 19 * hash + Objects.hashCode(this.displayName);
-        hash = 19 * hash + Objects.hashCode(this.photoUrl);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.username);
+        hash = 97 * hash + Objects.hashCode(this.displayName);
+        hash = 97 * hash + Objects.hashCode(this.emailAddress);
+        hash = 97 * hash + Objects.hashCode(this.bio);
+        hash = 97 * hash + Arrays.hashCode(this.image);
+        hash = 97 * hash + Objects.hashCode(this.photoUrl);
         return hash;
     }
 
@@ -95,14 +103,40 @@ public class RedHatUser implements Serializable{
         if (!Objects.equals(this.displayName, other.displayName)) {
             return false;
         }
+        if (!Objects.equals(this.emailAddress, other.emailAddress)) {
+            return false;
+        }
+        if (!Objects.equals(this.bio, other.bio)) {
+            return false;
+        }
         if (!Objects.equals(this.photoUrl, other.photoUrl)) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
+        if (!Arrays.equals(this.image, other.image)) {
+            return false;
+        }
         return true;
     }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
 
     public byte[] getImage() {
         return image;

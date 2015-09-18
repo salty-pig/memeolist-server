@@ -35,9 +35,11 @@ public class UserService {
     }
 
     @TransactionAttribute()
-    public RedHatUser createUser(String userName, String displayName, String photoUrl, byte[] image) {
+    public RedHatUser createUser(String userName, String displayName, String photoUrl, String emailAddress, byte[] image) {
         RedHatUser user = new RedHatUser();
         user.setUsername(userName);
+        user.setEmailAddress(emailAddress);
+        user.setBio("There is no bio yet.");
         user.setDisplayName(displayName);
         user.setPhotoUrl(photoUrl);
         user.setImage(image);

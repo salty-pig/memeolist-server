@@ -1,7 +1,6 @@
 package org.jboss.aerogear.memolist.service.controller;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
