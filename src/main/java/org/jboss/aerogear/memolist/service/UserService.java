@@ -5,12 +5,17 @@
  */
 package org.jboss.aerogear.memolist.service;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import org.jboss.aerogear.memolist.vo.FavoritedPost;
+import org.jboss.aerogear.memolist.vo.Post;
 import org.jboss.aerogear.memolist.vo.RedHatUser;
 
 /**
@@ -47,4 +52,28 @@ public class UserService {
         em.flush();
         return lookup(userName).get();
     }
+    
+    public List<FavoritedPost> getFavoritePosts(String userName) {
+        Query query = em.createQuery("from FavoritedPost f where f.owner.username = :username order by f.favoritedDate DESC");
+        return query.setParameter("username", userName).getResultList();
+    }
+
+    public FavoritedPost addFavorite(FavoritedPost post, RedHatUser redHatUser) {
+        post.setOwner(redHatUser);
+        post.setFavoritedDate(new Date());
+        em.persist(post);
+        return post;
+    }
+
+    public FavoritedPost removeFavorite(Long favoritePostId, RedHatUser redHatUser) {
+        FavoritedPost favoritePost = (FavoritedPost) em.createQuery("select f.post from FavoritedPost f where f.owner.username = :username order and f.id = :id")
+                .setParameter("username", redHatUser.getUsername())
+                .setParameter("id", favoritePostId)
+                .getSingleResult();
+        
+        em.remove(favoritePost);
+        return favoritePost;
+    }
+            
+    
 }

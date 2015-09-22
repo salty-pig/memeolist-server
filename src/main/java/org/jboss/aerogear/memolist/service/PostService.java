@@ -5,12 +5,16 @@
  */
 package org.jboss.aerogear.memolist.service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.jar.Pack200;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.jboss.aerogear.memolist.vo.Post;
+import org.jboss.aerogear.memolist.vo.PostComment;
+import org.jboss.aerogear.memolist.vo.RedHatUser;
 
 /**
  *
@@ -31,6 +35,27 @@ public class PostService {
 
     public List<Post> getMostRecent() {
         return em.createQuery("from Post order by posted").setMaxResults(10).getResultList();
+    }
+
+    public List<PostComment> getPostComments(Long postId) {
+        return em.createQuery("from PostComment where post.id = :postId order by postedDate").setParameter("postId", postId).getResultList();
+    }
+
+    public PostComment addComment(Long postId, PostComment comment, RedHatUser redHatUser) {
+        PostComment newComment = new PostComment();
+        Post post = findPost(postId);
+        
+        newComment.setAuthor(redHatUser);
+        newComment.setComment(comment.getComment());
+        newComment.setPost(post);
+        newComment.setPostedDate(new Date());
+        
+        em.persist(newComment);
+        return newComment;
+    }
+
+    private Post findPost(Long postId) {
+        return (Post) em.createQuery("from Post where id = :postId").setParameter("postId", postId).getSingleResult();
     }
             
     
