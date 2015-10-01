@@ -23,9 +23,10 @@ RUN sed -i -e 's/<drivers>/&\n   <driver name="postgresql" module="postgresql"><
 EXPOSE 8080
 EXPOSE 8443
 EXPOSE 9990
+EXPOSE 8787
 
 #Add admin user
 RUN /opt/jboss/wildfly/bin/add-user.sh $ADMIN_USER $ADMIN_PASSWORD
 RUN echo $MEMEOLISTPOSTGRES_PORT_5432_TCP_PORT
 RUN echo $MEMEOLISTPOSTGRES_PORT_5432_TCP_ADDR
-CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement","0.0.0.0"]
+ENTRYPOINT ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement","0.0.0.0"]
