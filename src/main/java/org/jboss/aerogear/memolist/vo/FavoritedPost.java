@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,9 +34,10 @@ public class FavoritedPost implements Serializable {
     }
 
     @ManyToOne
+    @XmlTransient
     private RedHatUser owner;
-    @ManyToOne
-    private Post post;
+    
+    private Long postId;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date favoritedDate;
@@ -48,12 +50,12 @@ public class FavoritedPost implements Serializable {
         this.owner = owner;
     }
 
-    public Post getPost() {
-        return post;
+    public Long getPostId() {
+        return postId;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 
     public Date getFavoritedDate() {

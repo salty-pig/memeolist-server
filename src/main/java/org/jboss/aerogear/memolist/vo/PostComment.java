@@ -29,9 +29,7 @@ public class PostComment implements Serializable, Comparable<PostComment> {
     @XmlTransient
     private RedHatUser author;
     
-    @ManyToOne
-    @XmlTransient
-    private Post post;
+    private Long  postId;
 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date postedDate;
@@ -47,13 +45,15 @@ public class PostComment implements Serializable, Comparable<PostComment> {
         this.author = author;
     }
 
-    public Post getPost() {
-        return post;
+    public Long getPostId() {
+        return postId;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
+
+    
 
     public Date getPostedDate() {
         return postedDate;

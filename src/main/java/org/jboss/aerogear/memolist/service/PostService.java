@@ -41,13 +41,17 @@ public class PostService {
         return em.createQuery("from PostComment where post.id = :postId order by postedDate").setParameter("postId", postId).getResultList();
     }
 
-    public PostComment addComment(Long postId, PostComment comment, RedHatUser redHatUser) {
+    public PostComment addComment(PostComment comment, RedHatUser redHatUser) {
         PostComment newComment = new PostComment();
-        Post post = findPost(postId);
+        Post post = findPost(comment.getPostId());
+        
+        if (post == null) {
+            throw new IllegalArgumentException("Post does not exist");
+        }
         
         newComment.setAuthor(redHatUser);
         newComment.setComment(comment.getComment());
-        newComment.setPost(post);
+        newComment.setPostId(comment.getPostId());
         newComment.setPostedDate(new Date());
         
         em.persist(newComment);

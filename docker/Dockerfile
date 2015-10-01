@@ -29,4 +29,4 @@ EXPOSE 8787
 RUN /opt/jboss/wildfly/bin/add-user.sh $ADMIN_USER $ADMIN_PASSWORD
 RUN echo $MEMEOLISTPOSTGRES_PORT_5432_TCP_PORT
 RUN echo $MEMEOLISTPOSTGRES_PORT_5432_TCP_ADDR
-ENTRYPOINT ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement","0.0.0.0"]
+CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement","0.0.0.0"]

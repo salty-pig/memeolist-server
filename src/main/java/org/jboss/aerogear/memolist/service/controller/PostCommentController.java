@@ -50,7 +50,7 @@ public class PostCommentController {
     @Path("comments")
     @Produces(MediaType.APPLICATION_JSON)
     public PostComment favoritePost(PostComment comment) {
-        return postService.addComment(comment.getPost().getId(), comment, rhuBean.getRedHatUser());
+        return postService.addComment(comment, rhuBean.getRedHatUser());
     }
     
 }
