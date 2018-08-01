@@ -25,7 +25,7 @@
         <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-core</artifactId>
-            <version>1.0.4.Final</version>
+            <version>3.4.2.Final</version>
             <type>jar</type>
         </dependency>
         <dependency>
